@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="tr">
+@await Component.InvokeAsync("HeadPartialComponent")
+
+<body>
+	<!-- header -->
+	@await Component.InvokeAsync("HeaderPartialComponent")
+	<!-- script-for sticky-nav -->
+	@await Component.InvokeAsync("ScriptPartialComponent")
+	<!-- //script-for sticky-nav -->
+	@await Component.InvokeAsync("LogoPartialComponent")
+	<!-- //header -->
+	<!-- banner -->
+	@await Component.InvokeAsync("BannerPartialComponent")
+	<!-- banner -->
+	@await Component.InvokeAsync("BannerBottomPartialComponent")
+	<!-- top-brands -->
+	<div class="top-brands">
+		@await Component.InvokeAsync("FoodGetList")
+		@RenderBody()
+	</div>
+
+	@await Component.InvokeAsync("FooterPartialComponent")
+
+</body>
+</html>
+

@@ -1,0 +1,41 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@model IPagedList<FoodAndCore.Data.Models.Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Category List</h1>
+<br />
+<table class="table table-brodered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+
+        <tr>
+            <td>@item.CategoryID</td>
+            <td>@item.CategoryName</td>
+            <td>@item.CategoryDescription</td>
+            <td>@item.Status</td>
+            @if (item.Status == true)
+            {
+                <td><a class="btn btn-danger" href="/Category/RemoveCategory/@item.CategoryID">Disabled</a></td>
+            }
+            else
+            {
+                <td><a class="btn btn-danger" href="/Category/RemoveCategory/@item.CategoryID">Enabled</a></td>
+            }
+            <td><a class="btn btn-success" href="/Category/GetCategory/@item.CategoryID">Update</a></td>
+        </tr>
+    }
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+<a class="btn btn-info" href="/Category/AddCategory">New Category</a>
